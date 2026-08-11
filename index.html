@@ -22,9 +22,14 @@
 <meta property="og:title" content="Antalya Akü Servisi — 7/24 Mobil Akü ve Yol Yardım">
 <meta property="og:description" content="Yolda, otoparkta, iş yerinizin önünde. Nerede kaldıysanız oraya geliyoruz; aküyü yerinde test edip değiştiriyoruz. Çekiciye gerek yok.">
 <meta property="og:url" content="https://akuservisim.com.tr/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://akuservisim.com.tr/images/akuservisi.webp">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="933">
+<meta property="og:image:alt" content="Antalya Akü Servisi — 7/24 Mobil Akü ve Yol Yardım">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Antalya Akü Servisi — 7/24 Mobil Akü ve Yol Yardım">
 <meta name="twitter:description" content="Yolda, otoparkta, iş yerinizin önünde. Nerede kaldıysanız oraya geliyoruz; aküyü yerinde test edip değiştiriyoruz. Çekiciye gerek yok.">
+<meta name="twitter:image" content="https://akuservisim.com.tr/images/akuservisi.webp">
 <style>
 :root{
   /* lacivert + altın zemin */
@@ -296,6 +301,38 @@ section{padding:82px 0}
   font-weight:700;font-size:.9rem;transition:gap .2s;
 }
 .card:hover .more{gap:11px}
+
+/* ---------- tanıtım afişi (marka banner'ı) ---------- */
+.banner{
+  display:block;position:relative;border-radius:var(--r2);overflow:hidden;
+  border:1px solid var(--line2);background:var(--bg2);
+  box-shadow:0 26px 60px rgba(0,0,0,.5),0 0 0 1px rgba(220,180,71,.10);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .3s;
+}
+.banner img{width:100%;height:auto;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.banner:hover{transform:translateY(-4px);border-color:var(--volt-dim);
+  box-shadow:0 32px 70px rgba(0,0,0,.6),0 0 0 1px var(--glow)}
+.banner:hover img{transform:scale(1.02)}
+/* "aramak için tıklayın" rozeti — arama yolu olduğu için mavi */
+.banner::after{
+  content:"📞 Aramak için tıklayın";
+  position:absolute;top:14px;right:14px;
+  background:var(--blue);color:#fff;
+  font-size:.78rem;font-weight:700;padding:8px 15px;border-radius:99px;
+  box-shadow:0 8px 22px var(--blue-glow);
+  opacity:0;transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease;
+  pointer-events:none;
+}
+.banner:hover::after{opacity:1;transform:none}
+@media(max-width:640px){
+  .banner::after{opacity:1;transform:none;font-size:.68rem;padding:6px 11px;top:9px;right:9px}
+}
+/* hero içinde afiş */
+.hero-banner{margin-top:38px;max-width:100%}
+/* bölüm arası tam genişlik afiş bandı */
+.band{padding:0 0 82px}
+.band.top{padding-top:82px}
+@media(max-width:560px){.band{padding-bottom:60px}.band.top{padding-top:60px}}
 
 /* ---------- görseller ---------- */
 .shot{
@@ -632,6 +669,8 @@ section{padding:82px 0}
   "@id": "https://akuservisim.com.tr/#isletme",
   "name": "Akü Servisim Antalya",
   "url": "https://akuservisim.com.tr/",
+  "image": "https://akuservisim.com.tr/images/akuservisi.webp",
+  "logo": "https://akuservisim.com.tr/images/akuservisi.webp",
   "telephone": "+905428375485",
   "description": "Antalya'da 7/24 mobil akü servisi, yerinde akü değişimi ve akü yol yardım hizmeti.",
   "priceRange": "₺₺",
@@ -822,6 +861,9 @@ section{padding:82px 0}
       <span class="fact"><b>Tüm Antalya</b> merkez ve ilçeler</span>
       <span class="fact"><b>Yerinde</b> test ve değişim</span>
     </div>
+    <div class="hero-banner rv rv-s">
+      <a class="banner" href="tel:+905428375485" aria-label="Telefonla ara: 0542 837 54 85"><img src="/images/akuservisi.webp" alt="Akü Servisim Antalya — 7/24 yerinde akü servisi, İnci, Mutlu ve Varta akü" width="1400" height="933" loading="eager" fetchpriority="high" decoding="async"></a>
+    </div>
   </div>
 </section>
 
@@ -893,6 +935,14 @@ section{padding:82px 0}
           <span class="more">Varta Akü modelleri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="band top">
+  <div class="wrap">
+    <div class="rv rv-s">
+      <a class="banner" href="tel:+905428375485" aria-label="Telefonla ara: 0542 837 54 85"><img src="/images/akuservisim2.webp" alt="Akü Servisim — Antalya'nın her yerinde güçlü akü, güvenli yolculuk" width="1400" height="933" loading="lazy" decoding="async"></a>
     </div>
   </div>
 </section>
