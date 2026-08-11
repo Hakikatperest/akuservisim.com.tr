@@ -50,7 +50,7 @@
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{
   font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   background:var(--bg);color:var(--txt);line-height:1.65;overflow-x:hidden;
@@ -88,16 +88,18 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .btn-call:hover{background:var(--blue2);box-shadow:0 12px 28px var(--blue-glow)}
 /* HERO ana çağrı butonu — kırmızı + arkasında dalgalanan beyaz ışık */
 .hot{position:relative;display:inline-flex;isolation:isolate}
+.hot{max-width:100%}
 .hot::before,.hot::after{
-  content:"";position:absolute;inset:-16px;border-radius:999px;z-index:-1;pointer-events:none;
-  background:radial-gradient(58% 58% at 50% 50%,rgba(255,255,255,.62),rgba(255,255,255,0) 72%);
-  filter:blur(11px);
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;
+  background:radial-gradient(62% 120% at 50% 50%,rgba(255,255,255,.75),rgba(255,255,255,0) 70%);
 }
+/* transform YOK — olcek buyutmek mobilde yatay tasma yaratiyordu.
+   Dalgalanma opaklik + bulaniklik ile yapiliyor, yerlesimi etkilemez. */
 .hot::before{animation:hotWave 3s ease-in-out infinite}
-.hot::after{animation:hotWave 3s ease-in-out infinite 1.5s;opacity:.55}
+.hot::after{animation:hotWave 3s ease-in-out infinite 1.5s}
 @keyframes hotWave{
-  0%,100%{transform:scale(.88);opacity:.35}
-  50%{transform:scale(1.14);opacity:.9}
+  0%,100%{opacity:.30;filter:blur(9px)}
+  50%{opacity:.92;filter:blur(19px)}
 }
 .btn-hot{
   position:relative;overflow:hidden;
@@ -168,8 +170,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 /* ---------- header ---------- */
 .hdr{
   position:sticky;top:0;z-index:90;
-  background:rgba(7,22,45,.94);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(7,22,45,.97);
   border-bottom:1px solid var(--line);
   transition:background .25s,box-shadow .25s;
 }
@@ -606,7 +607,7 @@ section{padding:82px 0}
 
 /* ---------- sabit butonlar ---------- */
 .dock{
-  position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));
   z-index:88;display:flex;flex-direction:column;gap:10px;
 }
 .dock-btn{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
