@@ -79,37 +79,74 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .btn-ghost:hover{border-color:var(--volt);color:var(--volt)}
 
 /* ---------- header ---------- */
-.hdr{position:sticky;top:0;z-index:90;background:rgba(14,17,22,.92);border-bottom:1px solid transparent;transition:border-color .25s,background .25s}
-.hdr.stuck{border-bottom-color:var(--line);background:rgba(14,17,22,.97)}
-.hdr-in{display:flex;align-items:center;gap:20px;height:72px}
+.hdr{
+  position:sticky;top:0;z-index:90;
+  background:rgba(14,17,22,.94);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  transition:background .25s,box-shadow .25s;
+}
+.hdr::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--volt),transparent);
+  opacity:.55;
+}
+.hdr.stuck{background:rgba(14,17,22,.985);box-shadow:0 8px 28px rgba(0,0,0,.42)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:76px}
+
 .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
 .brand-mark{
-  width:38px;height:38px;border-radius:9px;flex-shrink:0;
-  background:var(--volt);display:grid;place-items:center;
-  box-shadow:0 0 0 1px rgba(0,224,106,.4),0 6px 18px rgba(0,224,106,.22);
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(145deg,var(--volt2),var(--volt));
+  display:grid;place-items:center;
+  box-shadow:0 6px 18px rgba(0,224,106,.25);
 }
-.brand-mark svg{width:20px;height:20px;color:#04140B}
-.brand-txt{font-weight:800;font-size:1.06rem;letter-spacing:-.02em;line-height:1.15}
+.brand-mark svg{width:21px;height:21px;color:#04140B}
+.brand-txt{font-weight:800;font-size:1.05rem;letter-spacing:-.025em;line-height:1.1;white-space:nowrap}
 .brand-txt small{
-  display:block;font-family:var(--mono);font-size:10px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-top:1px;
+  display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-top:3px;
 }
-.menu{display:flex;gap:4px;margin-left:auto}
+
+/* menü — masaüstünde ortada */
+.nav-wrap{flex:1;display:flex;justify-content:center;min-width:0}
+.menu{display:flex;gap:2px;background:var(--bg2);border:1px solid var(--line);border-radius:99px;padding:4px}
 .menu a{
-  display:block;padding:8px 14px;border-radius:7px;font-size:.9rem;font-weight:600;
-  color:var(--mut);transition:color .2s,background .2s;
+  display:block;padding:8px 15px;border-radius:99px;font-size:.875rem;font-weight:600;
+  color:var(--mut);transition:color .2s,background .2s;white-space:nowrap;
 }
-.menu a:hover,.menu a.on{color:var(--txt);background:var(--surf)}
+.menu a:hover{color:var(--txt);background:var(--surf2)}
+.menu a.on{color:#04140B;background:var(--volt)}
+
+/* sağ blok: telefon + burger her zaman birlikte, sağda */
+.hdr-act{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-left:auto}
 .hdr-tel{
-  display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:#04140B;
-  padding:10px 18px;border-radius:var(--r);font-weight:800;font-size:.92rem;
-  transition:background .2s,transform .18s;
+  display:inline-flex;align-items:center;gap:11px;
+  background:linear-gradient(145deg,var(--volt2),var(--volt));color:#04140B;
+  padding:8px 18px 8px 12px;border-radius:99px;
+  transition:transform .18s,box-shadow .18s;
+  box-shadow:0 6px 20px rgba(0,224,106,.22);
 }
-.hdr-tel svg{width:17px;height:17px}
-.hdr-tel:hover{background:var(--volt2);transform:translateY(-1px)}
-.burger{display:none;width:42px;height:42px;background:var(--surf);border:1px solid var(--line);border-radius:9px;
-  flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0}
-.burger span{width:18px;height:2px;background:var(--txt);border-radius:2px}
+.hdr-tel:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,224,106,.34)}
+.hdr-tel .ht-ic{
+  width:30px;height:30px;border-radius:50%;background:rgba(4,20,11,.14);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.hdr-tel .ht-ic svg{width:15px;height:15px}
+.hdr-tel .ht-txt{display:flex;flex-direction:column;line-height:1.05}
+.hdr-tel .ht-txt small{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;opacity:.72;font-weight:600}
+.hdr-tel .ht-txt b{font-size:.95rem;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+
+.burger{
+  display:none;width:44px;height:44px;background:var(--surf);border:1px solid var(--line2);
+  border-radius:12px;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;cursor:pointer;flex-shrink:0;transition:border-color .2s;
+}
+.burger:hover{border-color:var(--volt-dim)}
+.burger span{width:18px;height:2px;background:var(--txt);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 /* ---------- hero ---------- */
 .hero{position:relative;padding:88px 0 76px;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -182,8 +219,33 @@ section{padding:82px 0}
 }
 .card:hover .more{gap:11px}
 
+/* ---------- görseller ---------- */
+.shot{
+  position:relative;border-radius:var(--r2);overflow:hidden;
+  background:linear-gradient(160deg,#F4F7FA 0%,#DDE4EA 100%);
+  border:1px solid var(--line);display:grid;place-items:center;padding:22px;
+}
+.shot img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 26px rgba(0,0,0,.28))}
+.shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,255,255,.55),transparent 60%);
+}
+.shot.tall{aspect-ratio:4/3}
+
+/* marka sayfası: büyük görsel + küçük galeri */
+.gal{display:grid;grid-template-columns:1fr;gap:12px}
+.gal .thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gal .shot.mini{padding:14px;aspect-ratio:4/3}
+
 /* marka kartı */
-.brandcard{display:flex;flex-direction:column}
+.brandcard{display:flex;flex-direction:column;padding:0;overflow:hidden}
+.brandcard .shot{
+  border:none;border-radius:0;border-bottom:1px solid var(--line);
+  aspect-ratio:16/10;padding:20px;
+}
+.brandcard .shot img{transition:transform .5s ease}
+.brandcard:hover .shot img{transform:scale(1.05)}
+.brandcard .bbody{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
 .brandcard .bt{
   font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--volt);font-weight:600;margin-bottom:10px;
@@ -300,10 +362,10 @@ section{padding:82px 0}
   box-shadow:0 10px 26px rgba(0,0,0,.45);transition:transform .2s;position:relative}
 .dock-btn svg{width:25px;height:25px}
 .dock-btn:hover{transform:scale(1.07)}
-.dock-btn.call{background:var(--volt);color:#04140B}
+.dock-btn.call{background:#00C853;color:#fff}
 .dock-btn.wa{background:#25D366;color:#fff}
 .dock-btn.call::after{content:"";position:absolute;inset:0;border-radius:50%;
-  box-shadow:0 0 0 0 var(--glow);animation:ring 2.2s ease-out infinite}
+  box-shadow:0 0 0 0 rgba(0,200,83,.5);animation:ring 2.2s ease-out infinite}
 @keyframes ring{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 15px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
 /* ---------- reveal ---------- */
@@ -316,19 +378,33 @@ section{padding:82px 0}
 }
 
 /* ---------- mobil ---------- */
-@media(max-width:940px){
+@media(max-width:1040px){
+  /* menü açılır panele döner; nav-wrap artık yer kaplamıyor */
+  .nav-wrap{position:static;flex:0 0 auto}
   .menu{
-    position:absolute;top:72px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);
-    flex-direction:column;gap:0;padding:0 12px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;
+    position:absolute;top:76px;left:0;right:0;
+    background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    border-radius:0;flex-direction:column;gap:2px;padding:0 16px;
+    max-height:0;overflow:hidden;transition:max-height .32s ease,padding .32s ease;
+    box-shadow:0 18px 34px rgba(0,0,0,.45);
   }
-  .menu.open{max-height:340px;padding:10px 12px 16px}
-  .menu a{padding:13px 12px;border-radius:8px}
-  .burger{display:flex;margin-left:auto}
-  .hdr-tel{margin-left:0}
-  .hdr-tel span{display:none}
-  .hdr-tel{padding:11px 14px}
+  .menu.open{max-height:360px;padding:12px 16px 18px}
+  .menu a{padding:14px 14px;border-radius:10px;font-size:.95rem}
+  .menu a.on{background:var(--surf2);color:var(--volt)}
+  .burger{display:flex}
   .ftr-grid{grid-template-columns:1fr 1fr;gap:32px}
   .ftr-brand{grid-column:1/-1}
+}
+@media(max-width:620px){
+  /* dar ekranda telefon numarası gizlenir, ikon buton kalır — sağda burger ile yan yana */
+  .hdr-in{height:66px;gap:10px}
+  .menu{top:66px}
+  .hdr-tel{padding:0;width:44px;height:44px;border-radius:12px;justify-content:center}
+  .hdr-tel .ht-txt{display:none}
+  .hdr-tel .ht-ic{width:auto;height:auto;background:none}
+  .hdr-tel .ht-ic svg{width:19px;height:19px}
+  .brand-mark{width:36px;height:36px}
+  .brand-txt{font-size:.95rem}
 }
 @media(max-width:560px){
   .hero{padding:60px 0 54px}
@@ -403,19 +479,28 @@ section{padding:82px 0}
   <div class="wrap hdr-in">
     <a href="/" class="brand" aria-label="Akü Servisim — Antalya">
       <span class="brand-mark"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span>
-      <span class="brand-txt">Akü Servisim<small>Antalya</small></span>
+      <span class="brand-txt">Akü Servisim<small>Antalya · 7/24</small></span>
     </a>
-    <nav><ul class="menu" id="menu">
-      <li><a href="/#hizmetler">Hizmetler</a></li>
-      <li><a href="/#markalar" class="on">Markalar</a></li>
-      <li><a href="/#belirti">Akü Belirtileri</a></li>
-      <li><a href="/#bolgeler">Bölgeler</a></li>
-      <li><a href="/#sss">SSS</a></li>
-    </ul></nav>
-    <a href="tel:+905428375485" class="hdr-tel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>0542 837 54 85</span></a>
-    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="menu">
-      <span></span><span></span><span></span>
-    </button>
+
+    <nav class="nav-wrap" aria-label="Ana menü">
+      <ul class="menu" id="menu">
+        <li><a href="/#hizmetler">Hizmetler</a></li>
+        <li><a href="/#markalar" class="on">Markalar</a></li>
+        <li><a href="/#belirti">Akü Belirtileri</a></li>
+        <li><a href="/#bolgeler">Bölgeler</a></li>
+        <li><a href="/#sss">SSS</a></li>
+      </ul>
+    </nav>
+
+    <div class="hdr-act">
+      <a href="tel:+905428375485" class="hdr-tel" aria-label="Telefonla ara: 0542 837 54 85">
+        <span class="ht-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span class="ht-txt"><small>7/24 AÇIK</small><b>0542 837 54 85</b></span>
+      </a>
+      <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 <main id="main">
@@ -463,6 +548,15 @@ section{padding:82px 0}
       </div>
 
       <aside class="aside">
+        <div class="gal" style="margin-bottom:20px">
+          <div class="shot tall">
+            <img src="/images/varta-aku-1.webp" alt="Varta Akü akü, Antalya — yerinde değişim" width="900" height="700" loading="eager" fetchpriority="high" decoding="async">
+          </div>
+          <div class="thumbs">
+            <div class="shot mini"><img src="/images/varta-aku-2.webp" alt="Varta Akü akü modeli" width="450" height="340" loading="lazy" decoding="async"></div>
+            <div class="shot mini"><img src="/images/varta-aku-3.webp" alt="Varta Akü akü modeli" width="450" height="340" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
         <h3>Varta Akü — özet</h3>
         <div class="spec"><span>Menşe</span><b>İthal</b></div><div class="spec"><span>Kullanım</span><b>Binek / ticari</b></div><div class="spec"><span>Tip</span><b>Kurşun-asit, EFB, AGM</b></div><div class="spec"><span>Teslim</span><b>Yerinde takılır</b></div><div class="spec"><span>Bölge</span><b>Tüm Antalya</b></div>
         <a class="btn btn-call" href="tel:+905428375485"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg>0542 837 54 85</a>
@@ -477,7 +571,7 @@ section{padding:82px 0}
     <p class="eyebrow">Diğer markalar</p>
     <h2 class="sec-t">Başka bir marka mı arıyorsunuz?</h2>
     <p class="sec-s">Aracınıza uygun olduğu sürece marka tercihi sizindir. Hangisinin uygun olduğunu söyleyebiliriz.</p>
-    <div class="grid g3"><a class="card brandcard rv" href="/antalya-inci-aku/"><span class="bt">Diğer marka</span><h3>İnci Akü Antalya</h3><p>İnci Akü modelleri ve Antalya genelinde yerinde değişim.</p><span class="more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="card brandcard rv" href="/antalya-mutlu-aku/"><span class="bt">Diğer marka</span><h3>Mutlu Akü Antalya</h3><p>Mutlu Akü modelleri ve Antalya genelinde yerinde değişim.</p><span class="more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+    <div class="grid g3"><a class="card brandcard rv" href="/antalya-inci-aku/"><div class="shot"><img src="/images/inci-aku-1.webp" alt="İnci Akü akü — Antalya" width="600" height="470" loading="lazy" decoding="async"></div><div class="bbody"><span class="bt">Diğer marka</span><h3>İnci Akü Antalya</h3><p>İnci Akü modelleri ve Antalya genelinde yerinde değişim.</p><span class="more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="card brandcard rv" href="/antalya-mutlu-aku/"><div class="shot"><img src="/images/mutlu-aku-1.webp" alt="Mutlu Akü akü — Antalya" width="600" height="470" loading="lazy" decoding="async"></div><div class="bbody"><span class="bt">Diğer marka</span><h3>Mutlu Akü Antalya</h3><p>Mutlu Akü modelleri ve Antalya genelinde yerinde değişim.</p><span class="more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div>
   </div>
 </section>
 
