@@ -27,12 +27,20 @@
 <meta name="twitter:description" content="Aracınızın bulunduğu yerde İnci Akü akü değişimi. Antalya genelinde 7/24.">
 <style>
 :root{
-  --bg:#0E1116; --bg2:#151A21; --surf:#1B222B; --surf2:#212A35;
-  --line:#28323F; --line2:#36434F;
-  --volt:#00E06A; --volt2:#5CF2A3; --volt-dim:#0B8B4A;
-  --glow:rgba(0,224,106,.28);
-  --txt:#EEF3F8; --mut:#8A97A6; --mut2:#65727F;
-  --amber:#FFB020;
+  /* lacivert + altın zemin */
+  --bg:#07162D; --bg2:#0C2143; --surf:#112A4F; --surf2:#16345D;
+  --line:#22406C; --line2:#2E5186;
+  /* --volt = ana vurgu (altın) */
+  --volt:#DCB447; --volt2:#F3DE9B; --volt-dim:#A8862C;
+  --glow:rgba(220,180,71,.30);
+  /* arama butonlari = mavi */
+  --blue:#1E6FEB; --blue2:#3B86FF; --blue-d:#1454C0;
+  --blue-glow:rgba(30,111,235,.38);
+  /* "aracınız çalışmıyor mu?" seridi = koyu yesil */
+  --green-dark:#0C6B3C; --green-dark2:#095630;
+  --txt:#FFFFFF; --mut:#C2CFE0; --mut2:#8496AE;
+  --amber:#FF9E2C;
+  --ink:#07162D;
   --r:10px; --r2:14px;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 }
@@ -49,7 +57,7 @@ ul{list-style:none}
 h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wrap:break-word}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 @media(max-width:560px){.wrap{padding:0 16px}}
-.skip{position:absolute;left:-9999px;top:0;background:var(--volt);color:#04140B;padding:10px 16px;z-index:200;font-weight:700}
+.skip{position:absolute;left:-9999px;top:0;background:var(--volt);color:var(--ink);padding:10px 16px;z-index:200;font-weight:700}
 .skip:focus{left:8px;top:8px}
 :focus-visible{outline:2px solid var(--volt);outline-offset:3px;border-radius:4px}
 
@@ -71,8 +79,8 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .btn svg{width:18px;height:18px;flex-shrink:0}
 .btn:hover{transform:translateY(-2px)}
 .btn.lg{padding:16px 28px;font-size:1.02rem}
-.btn-call{background:var(--volt);color:#04140B}
-.btn-call:hover{background:var(--volt2)}
+.btn-call{background:var(--blue);color:#fff;box-shadow:0 8px 22px var(--blue-glow)}
+.btn-call:hover{background:var(--blue2);box-shadow:0 12px 28px var(--blue-glow)}
 .btn-wa{background:var(--surf2);color:var(--txt);border-color:var(--line2)}
 .btn-wa:hover{border-color:var(--volt);color:var(--volt)}
 .btn-ghost{background:transparent;color:var(--txt);border-color:var(--line2)}
@@ -81,7 +89,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 /* ---------- header ---------- */
 .hdr{
   position:sticky;top:0;z-index:90;
-  background:rgba(14,17,22,.94);
+  background:rgba(7,22,45,.94);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
   transition:background .25s,box-shadow .25s;
@@ -91,7 +99,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   background:linear-gradient(90deg,transparent,var(--volt),transparent);
   opacity:.55;
 }
-.hdr.stuck{background:rgba(14,17,22,.985);box-shadow:0 8px 28px rgba(0,0,0,.42)}
+.hdr.stuck{background:rgba(7,22,45,.985);box-shadow:0 8px 28px rgba(0,0,0,.42)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:76px}
 
 .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
@@ -99,9 +107,9 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   width:40px;height:40px;border-radius:11px;flex-shrink:0;
   background:linear-gradient(145deg,var(--volt2),var(--volt));
   display:grid;place-items:center;
-  box-shadow:0 6px 18px rgba(0,224,106,.25);
+  box-shadow:0 6px 18px rgba(220,180,71,.30);
 }
-.brand-mark svg{width:21px;height:21px;color:#04140B}
+.brand-mark svg{width:21px;height:21px;color:var(--ink)}
 .brand-txt{font-weight:800;font-size:1.05rem;letter-spacing:-.025em;line-height:1.1;white-space:nowrap}
 .brand-txt small{
   display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;
@@ -116,20 +124,20 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   color:var(--mut);transition:color .2s,background .2s;white-space:nowrap;
 }
 .menu a:hover{color:var(--txt);background:var(--surf2)}
-.menu a.on{color:#04140B;background:var(--volt)}
+.menu a.on{color:var(--ink);background:var(--volt)}
 
 /* sağ blok: telefon + burger her zaman birlikte, sağda */
 .hdr-act{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-left:auto}
 .hdr-tel{
   display:inline-flex;align-items:center;gap:11px;
-  background:linear-gradient(145deg,var(--volt2),var(--volt));color:#04140B;
+  background:linear-gradient(145deg,var(--blue2),var(--blue));color:#fff;
   padding:8px 18px 8px 12px;border-radius:99px;
-  transition:transform .18s,box-shadow .18s;
-  box-shadow:0 6px 20px rgba(0,224,106,.22);
+  transition:transform .18s,box-shadow .18s,background .2s;
+  box-shadow:0 6px 20px var(--blue-glow);
 }
-.hdr-tel:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,224,106,.34)}
+.hdr-tel:hover{transform:translateY(-1px);background:var(--blue2);box-shadow:0 10px 26px var(--blue-glow)}
 .hdr-tel .ht-ic{
-  width:30px;height:30px;border-radius:50%;background:rgba(4,20,11,.14);
+  width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);
   display:grid;place-items:center;flex-shrink:0;
 }
 .hdr-tel .ht-ic svg{width:15px;height:15px}
@@ -152,7 +160,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .hero{position:relative;padding:88px 0 76px;overflow:hidden;border-bottom:1px solid var(--line)}
 .hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 60% 50% at 15% 0%,rgba(0,224,106,.10),transparent 65%);
+  background:radial-gradient(ellipse 62% 55% at 18% 0%,rgba(220,180,71,.13),transparent 65%);
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -167,10 +175,75 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   padding:7px 15px;border-radius:99px;font-size:12px;font-weight:700;color:var(--mut);
   letter-spacing:.06em;margin-bottom:22px;
 }
-.live .led{width:8px;height:8px;border-radius:50%;background:var(--volt);box-shadow:0 0 10px var(--volt);animation:led 1.5s ease-in-out infinite}
+.live .led{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 10px #22C55E;animation:led 1.5s ease-in-out infinite}
 @keyframes led{0%,100%{opacity:1}50%{opacity:.2}}
 .hero h1{font-size:clamp(2rem,5.6vw,3.5rem);margin-bottom:20px;letter-spacing:-.035em}
-.hero h1 .v{color:var(--volt)}
+
+/* --- HERO ANİMASYONU ---
+   Referanstan farklı mekanik: satırlar soldan kaymak yerine
+   maskenin altından DİKEY yükseliyor, altın satır ayrıca harf
+   aralığı sıkışarak yerine oturuyor, altına voltaj yayı çiziliyor. */
+.hero h1 .ln{display:block;overflow:hidden;padding:.06em 0}
+.hero h1 .ln > span{
+  display:inline-block;transform:translateY(112%) rotate(2.5deg);opacity:0;
+  animation:lineUp .95s cubic-bezier(.16,.9,.24,1) forwards;
+}
+.hero h1 .ln1 > span{animation-delay:.15s}
+.hero h1 .ln2 > span{animation-delay:.34s}
+@keyframes lineUp{
+  0%{transform:translateY(112%) rotate(2.5deg);opacity:0}
+  100%{transform:translateY(0) rotate(0);opacity:1}
+}
+.hero h1 .v{
+  background:linear-gradient(100deg,var(--volt) 0%,var(--volt2) 42%,var(--volt) 78%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.06em;
+  animation:lineUp .95s .34s cubic-bezier(.16,.9,.24,1) forwards,
+            tighten 1s .34s cubic-bezier(.2,.8,.2,1) forwards,
+            sweep 5.5s 1.5s linear infinite;
+}
+@keyframes tighten{0%{letter-spacing:.10em}100%{letter-spacing:-.02em}}
+@keyframes sweep{0%{background-position:210% 0}100%{background-position:-110% 0}}
+
+/* voltaj yayı: başlığın altında çizilen kırık çizgi */
+.arc{display:block;width:min(420px,86%);height:22px;margin:2px 0 22px;overflow:visible}
+.arc path{
+  fill:none;stroke:var(--volt);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:460;stroke-dashoffset:460;
+  filter:drop-shadow(0 0 6px var(--glow));
+  animation:drawArc 1.5s 1s cubic-bezier(.3,.8,.3,1) forwards;
+}
+@keyframes drawArc{to{stroke-dashoffset:0}}
+
+/* şarj göstergesi: hero altında bir kez dolan bar */
+.hmeter{
+  width:min(300px,72%);height:6px;border-radius:99px;background:var(--bg2);
+  border:1px solid var(--line);overflow:hidden;margin:0 0 26px;position:relative;
+}
+.hmeter i{
+  display:block;height:100%;width:100%;border-radius:99px;transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--volt-dim),var(--volt),var(--volt2));
+  box-shadow:0 0 14px var(--glow);
+  transform:scaleX(0);animation:fill 1.8s 1.15s cubic-bezier(.25,.9,.3,1) forwards;
+}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* açılışta tek seferlik ışık dalgası */
+.hero .flash{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(105deg,transparent 38%,rgba(220,180,71,.16) 50%,transparent 62%);
+  transform:translateX(-120%);
+  animation:flashSweep 1.5s .5s cubic-bezier(.3,.7,.3,1) forwards;
+}
+@keyframes flashSweep{to{transform:translateX(120%)}}
+
+@media(prefers-reduced-motion:reduce){
+  .hero h1 .ln > span,.hero h1 .v{animation:none;transform:none;opacity:1;letter-spacing:-.02em}
+  .arc path{animation:none;stroke-dashoffset:0}
+  .hmeter i{animation:none;transform:scaleX(1)}
+  .hero .flash{display:none}
+}
 .hero p.lead{color:var(--mut);font-size:1.1rem;max-width:600px;margin-bottom:32px}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
 .hero-facts{display:flex;flex-wrap:wrap;gap:10px}
@@ -182,15 +255,20 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .fact::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--volt);flex-shrink:0}
 
 /* ---------- şerit ---------- */
-.strip{background:var(--volt);color:#04140B;padding:18px 0}
-.strip-in{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
-.strip strong{font-size:1.06rem;font-weight:800;letter-spacing:-.01em}
+.strip{
+  background:linear-gradient(100deg,var(--green-dark) 0%,var(--green-dark2) 100%);
+  color:#fff;padding:20px 0;border-top:1px solid rgba(255,255,255,.09);
+  border-bottom:1px solid rgba(0,0,0,.25);
+}
+.strip-in{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
+.strip strong{font-size:1.06rem;font-weight:800;letter-spacing:-.01em;color:#fff}
 .strip a{
-  display:inline-flex;align-items:center;gap:8px;background:#04140B;color:var(--volt);
-  padding:11px 22px;border-radius:var(--r);font-weight:800;font-size:1.02rem;transition:transform .18s;
+  display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;
+  padding:12px 24px;border-radius:var(--r);font-weight:800;font-size:1.02rem;
+  transition:transform .18s,background .2s;box-shadow:0 8px 22px rgba(0,0,0,.28);
 }
 .strip a svg{width:18px;height:18px}
-.strip a:hover{transform:translateY(-2px)}
+.strip a:hover{transform:translateY(-2px);background:var(--blue2)}
 
 /* ---------- bölüm iskeleti ---------- */
 section{padding:82px 0}
@@ -207,7 +285,7 @@ section{padding:82px 0}
 }
 .card:hover{border-color:var(--volt-dim);transform:translateY(-3px);background:var(--surf2)}
 .card .ico{
-  width:46px;height:46px;border-radius:11px;background:rgba(0,224,106,.1);border:1px solid rgba(0,224,106,.25);
+  width:46px;height:46px;border-radius:11px;background:rgba(220,180,71,.12);border:1px solid rgba(220,180,71,.28);
   display:grid;place-items:center;color:var(--volt);margin-bottom:16px;
 }
 .card .ico svg{width:22px;height:22px}
@@ -282,7 +360,7 @@ section{padding:82px 0}
   padding:10px 16px;font-size:.9rem;font-weight:600;color:var(--txt);transition:border-color .2s,color .2s;
 }
 .zone:hover{border-color:var(--volt-dim)}
-.zone.core{border-color:rgba(0,224,106,.35);background:rgba(0,224,106,.07)}
+.zone.core{border-color:rgba(220,180,71,.38);background:rgba(220,180,71,.08)}
 .zone-note{color:var(--mut);font-size:.92rem;margin-top:18px}
 
 /* ---------- içerik metni ---------- */
@@ -290,12 +368,16 @@ section{padding:82px 0}
 .prose p{color:var(--mut);margin-bottom:15px}
 .prose h3{font-size:1.15rem;margin:28px 0 10px;color:var(--txt)}
 .prose strong{color:var(--txt)}
-.prose ul{margin:12px 0 20px}
-.prose ul li{position:relative;padding-left:26px;color:var(--mut);margin-bottom:9px}
-.prose ul li::before{
+/* NOT: .sym kendi duzenini kurar (flex kart + numara + amber cizgi).
+   Madde isareti kurallari ondan haric tutulur, yoksa kartin kosesinde
+   alakasiz bir yesil kare beliriyor. */
+.prose ul:not(.sym){margin:12px 0 20px}
+.prose ul:not(.sym) li{position:relative;padding-left:26px;color:var(--mut);margin-bottom:9px}
+.prose ul:not(.sym) li::before{
   content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:2px;
   background:var(--volt);box-shadow:0 0 8px var(--glow);
 }
+.prose .sym{margin:14px 0 22px}
 .note{
   background:var(--surf);border:1px solid var(--line);border-left:3px solid var(--volt);
   border-radius:var(--r);padding:17px 20px;margin:22px 0;color:var(--mut);font-size:.95rem;
@@ -337,14 +419,14 @@ section{padding:82px 0}
 /* ---------- final CTA ---------- */
 .final{border-top:1px solid var(--line);background:var(--bg2);position:relative;overflow:hidden}
 .final::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 50% 70% at 50% 100%,rgba(0,224,106,.12),transparent 70%)}
+  background:radial-gradient(ellipse 50% 70% at 50% 100%,rgba(220,180,71,.13),transparent 70%)}
 .final-in{position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto}
 .final h2{font-size:clamp(1.5rem,3.4vw,2.2rem);margin-bottom:14px}
 .final p{color:var(--mut);margin-bottom:30px}
 .final .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* ---------- footer ---------- */
-.ftr{background:#0A0D11;border-top:1px solid var(--line);padding:56px 0 26px}
+.ftr{background:#04101F;border-top:1px solid var(--line);padding:56px 0 26px}
 .ftr-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
 .ftr-brand p{color:var(--mut);font-size:.92rem;margin:16px 0 20px;max-width:340px}
 .ftr-tel{display:flex;gap:10px;flex-wrap:wrap}
@@ -356,24 +438,141 @@ section{padding:82px 0}
 .ftr-btm{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;
   gap:12px;flex-wrap:wrap;color:var(--mut2);font-size:.84rem}
 
+/* ---------- çevrimiçi bildirimi (%50'de belirir) ---------- */
+.avail{
+  position:fixed;left:20px;bottom:20px;z-index:85;max-width:370px;
+  display:flex;align-items:center;gap:14px;
+  padding:16px 40px 16px 16px;border-radius:16px;
+  background:linear-gradient(135deg,var(--surf2) 0%,var(--bg2) 100%);
+  border:1px solid var(--line2);border-left:3px solid var(--volt);
+  box-shadow:0 22px 48px rgba(0,0,0,.55);
+  transform:translateY(160%) scale(.97);opacity:0;pointer-events:none;
+  transition:transform .55s cubic-bezier(.25,1.3,.5,1),opacity .4s ease;
+}
+.avail.show{transform:none;opacity:1;pointer-events:auto}
+.avail .av-ic{
+  width:48px;height:48px;border-radius:50%;flex-shrink:0;position:relative;
+  background:linear-gradient(145deg,var(--volt2),var(--volt));
+  display:grid;place-items:center;box-shadow:0 6px 18px var(--glow);
+}
+.avail .av-ic svg{width:23px;height:23px;color:var(--ink)}
+.avail .av-ic::after{
+  content:"";position:absolute;right:-1px;bottom:-1px;width:15px;height:15px;
+  background:#22C55E;border:2.5px solid var(--surf2);border-radius:50%;
+  animation:led 1.5s ease-in-out infinite;
+}
+.avail .av-tx{min-width:0}
+.avail .av-tx strong{display:block;font-size:.95rem;font-weight:800;margin-bottom:2px}
+.avail .av-tx p{font-size:.84rem;color:var(--mut);line-height:1.45}
+.avail .av-tx a{color:var(--volt);font-weight:800;white-space:nowrap}
+.avail .av-x{
+  position:absolute;top:8px;right:9px;width:24px;height:24px;border-radius:50%;
+  display:grid;place-items:center;color:var(--mut2);font-size:17px;line-height:1;
+  background:none;border:none;cursor:pointer;transition:background .2s,color .2s;
+}
+.avail .av-x:hover{background:rgba(255,255,255,.1);color:#fff}
+@media(max-width:900px){
+  .avail{left:12px;right:12px;max-width:none;bottom:86px}
+}
+@media(prefers-reduced-motion:reduce){
+  .avail{transition:opacity .3s ease}
+  .avail .av-ic::after{animation:none}
+}
+
 /* ---------- sabit butonlar ---------- */
 .dock{position:fixed;right:16px;bottom:16px;z-index:80;display:flex;flex-direction:column;gap:10px}
 .dock-btn{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
   box-shadow:0 10px 26px rgba(0,0,0,.45);transition:transform .2s;position:relative}
 .dock-btn svg{width:25px;height:25px}
 .dock-btn:hover{transform:scale(1.07)}
-.dock-btn.call{background:#00C853;color:#fff}
+.dock-btn.call{background:var(--blue);color:#fff}
 .dock-btn.wa{background:#25D366;color:#fff}
 .dock-btn.call::after{content:"";position:absolute;inset:0;border-radius:50%;
-  box-shadow:0 0 0 0 rgba(0,200,83,.5);animation:ring 2.2s ease-out infinite}
+  box-shadow:0 0 0 0 var(--blue-glow);animation:ring 2.2s ease-out infinite}
 @keyframes ring{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 15px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.rv.in{opacity:1;transform:none}
+/* ============ SCROLL EFEKTLERİ ============ */
+
+/* kaydırma ilerleme çubuğu */
+.prog{
+  position:fixed;top:0;left:0;height:3px;width:100%;z-index:120;
+  transform:scaleX(var(--p,0));transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--volt-dim),var(--volt),var(--blue2));
+  box-shadow:0 0 14px var(--glow);pointer-events:none;
+  transition:transform .08s linear;
+}
+
+/* temel reveal + yön/ölçek varyantları */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1),filter .75s ease;filter:blur(6px)}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv-l{transform:translateX(-46px)}
+.rv-r{transform:translateX(46px)}
+.rv-s{transform:scale(.9) translateY(24px)}
+.rv-u{transform:translateY(54px)}
+
+/* bölüm başlığı: soldan açılan maske + altında çizilen çizgi */
+.sec-t{position:relative;overflow:hidden}
+.sec-t.rv{clip-path:inset(0 100% 0 0);transform:none;filter:none;opacity:1;
+  transition:clip-path 1s cubic-bezier(.2,.8,.2,1)}
+.sec-t.rv.in{clip-path:inset(0 0 0 0)}
+.eyebrow.rv{opacity:0;transform:translateX(-18px);filter:none}
+.eyebrow.rv.in{opacity:1;transform:none}
+.eyebrow::before{transition:width .8s .15s cubic-bezier(.2,.8,.2,1)}
+.eyebrow.rv::before{width:0}
+.eyebrow.rv.in::before{width:22px}
+
+/* kartlar sırayla gelsin (JS --i atar) */
+.stag{transition-delay:calc(var(--i,0) * 85ms)}
+
+/* kart girişte hafif parlama */
+.card.rv.in{animation:cardGlow 1.1s .25s ease-out both}
+@keyframes cardGlow{
+  0%{box-shadow:0 0 0 0 rgba(220,180,71,0)}
+  40%{box-shadow:0 0 26px -6px var(--glow)}
+  100%{box-shadow:0 0 0 0 rgba(220,180,71,0)}
+}
+
+/* hero: yüzen kıvılcımlar + paralaks ızgara */
+.hero::after{transform:translateY(calc(var(--sy,0px) * .18))}
+.sparks{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.spark{position:absolute;color:var(--volt);opacity:.14;filter:drop-shadow(0 0 10px var(--glow))}
+.spark svg{width:100%;height:100%;display:block}
+.sp1{top:16%;left:5%;width:30px;height:30px;animation:drift 6s ease-in-out infinite}
+.sp2{top:64%;left:12%;width:20px;height:20px;animation:drift 7.5s ease-in-out infinite .9s}
+.sp3{top:24%;right:9%;width:26px;height:26px;animation:drift 6.8s ease-in-out infinite 1.4s}
+.sp4{bottom:18%;right:16%;width:22px;height:22px;animation:drift 5.6s ease-in-out infinite 2s}
+.sp5{top:48%;right:34%;width:16px;height:16px;animation:drift 8s ease-in-out infinite .5s}
+@keyframes drift{
+  0%,100%{transform:translateY(0) rotate(-10deg);opacity:.10}
+  50%{transform:translateY(-26px) rotate(6deg);opacity:.30}
+}
+@media(max-width:720px){.sp4,.sp5{display:none}}
+
+/* şarj rayı: bölüm boyunca dolan gösterge */
+.rail{position:relative;height:3px;background:var(--line);border-radius:99px;margin:0 0 44px;overflow:hidden}
+.rail::after{
+  content:"";position:absolute;inset:0;width:100%;border-radius:99px;
+  transform:scaleX(var(--f,0));transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--volt-dim),var(--volt));
+  box-shadow:0 0 12px var(--glow);transition:transform .15s linear;
+}
+
+/* adım numaraları girişte yukarı zıplasın */
+.step.rv.in::before{animation:numPop .6s cubic-bezier(.34,1.5,.64,1) both;animation-delay:calc(var(--i,0) * 85ms + .1s)}
+@keyframes numPop{0%{transform:translateY(14px) scale(.85);opacity:0}100%{transform:none;opacity:1}}
+
+/* bölge etiketleri dalga hâlinde */
+.zone.rv{transition-delay:calc(var(--i,0) * 28ms)}
+
+/* görsellerde hafif 3B eğim */
+.shot img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.card:hover .shot img,.shot:hover img{transform:scale(1.06) rotate(-.6deg)}
+
 @media(prefers-reduced-motion:reduce){
-  .rv{opacity:1!important;transform:none!important}
-  .led,.dock-btn.call::after{animation:none}
+  .rv,.sec-t.rv,.eyebrow.rv{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .card.rv.in,.step.rv.in::before{animation:none}
+  .led,.dock-btn.call::after,.spark{animation:none}
+  .prog,.rail::after{transition:none}
   html{scroll-behavior:auto}
 }
 
@@ -474,6 +673,7 @@ section{padding:82px 0}
 </script>
 </head>
 <body>
+<div class="prog" id="prog" aria-hidden="true"></div>
 <a class="skip" href="#main">İçeriğe geç</a>
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
@@ -506,9 +706,16 @@ section{padding:82px 0}
 <main id="main">
 
 <section class="hero">
+    <span class="flash" aria-hidden="true"></span>
+    <div class="sparks" aria-hidden="true"><span class="spark sp1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span><span class="spark sp2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span><span class="spark sp3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span><span class="spark sp4"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span><span class="spark sp5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg></span></div>
   <div class="wrap hero-in">
     <span class="live"><span class="led"></span>7/24 · Antalya GENELİ</span>
-    <h1>İnci Akü <span class="v">Antalya</span></h1>
+    <h1>
+      <span class="ln ln1"><span>İnci Akü</span></span>
+      <span class="ln ln2"><span class="v">Antalya</span></span>
+    </h1>
+    <svg class="arc" viewBox="0 0 420 22" aria-hidden="true"><path d="M2 16 L74 16 L96 4 L118 20 L140 9 L162 16 L418 16"/></svg>
+    <div class="hmeter" aria-hidden="true"><i></i></div>
     <p class="lead">Aracınıza uygun İnci Akü modelini Antalya'da bulunduğunuz yere getirip yerinde takıyoruz. Eski akünüzü teslim alıyoruz.</p>
     <div class="hero-cta">
       <a class="btn btn-call lg" href="tel:+905428375485"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.09 12.97 11 14l0 8 8.91-10.97L13 10z"/></svg>Hemen ara: 0542 837 54 85</a>
@@ -641,6 +848,15 @@ section{padding:82px 0}
   <a class="dock-btn wa" href="https://wa.me/905428375485?text=Merhaba%2C%20Antalya%20ak%C3%BC%20servisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.2-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
 </div>
 
+<aside class="avail" id="avail" role="status" aria-live="polite">
+  <button class="av-x" id="availX" aria-label="Bildirimi kapat">&times;</button>
+  <span class="av-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+  <span class="av-tx">
+    <strong>Şu an çevrimiçiyiz</strong>
+    <p>Antalya genelinde ekiplerimiz görevde. Arayın, gelelim — <a href="tel:+905428375485">0542 837 54 85</a></p>
+  </span>
+</aside>
+
 <script>
 document.getElementById('yil').textContent=new Date().getFullYear();
 (function(){
@@ -660,14 +876,72 @@ document.getElementById('yil').textContent=new Date().getFullYear();
       q.setAttribute('aria-expanded',!open?'true':'false');
     });
   });
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- otomatik reveal atama: baslik, alt baslik ve izgara ogeleri --- */
+  document.querySelectorAll('.sec-t, .eyebrow, .sec-s, .prose > h3, .prose > p, .note, .aside, .address-box, .rail')
+    .forEach(function(e){ e.classList.add('rv'); });
+  document.querySelectorAll('.split .prose').forEach(function(e){e.classList.add('rv','rv-l');});
+  document.querySelectorAll('.split .aside').forEach(function(e){e.classList.add('rv','rv-r');});
+  document.querySelectorAll('.gal .shot').forEach(function(e){e.classList.add('rv','rv-s');});
+
+  /* --- sirali giris: her izgara icindeki ogeye --i indeksi --- */
+  document.querySelectorAll('.grid, .steps, .sym, .zones, .faq, .hero-facts').forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(c,i){
+      c.classList.add('rv','stag');
+      c.style.setProperty('--i', i);
+    });
+  });
+
   var els=document.querySelectorAll('.rv');
-  if('IntersectionObserver' in window){
+  if(reduce){ els.forEach(function(e){e.classList.add('in');}); }
+  else if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(en){en.forEach(function(e){
       if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
-      {rootMargin:'0px 0px -8% 0px'});
+      {rootMargin:'0px 0px -10% 0px',threshold:.05});
     els.forEach(function(e){io.observe(e);});
-    setTimeout(function(){els.forEach(function(e){e.classList.add('in');});},2200);
+    setTimeout(function(){els.forEach(function(e){e.classList.add('in');});},2600);
   } else { els.forEach(function(e){e.classList.add('in');}); }
+
+  /* --- kaydirma ilerlemesi + hero paralaksi + sarj raylari --- */
+  var prog=document.getElementById('prog'),
+      hero=document.querySelector('.hero'),
+      rails=document.querySelectorAll('.rail'),
+      tick=false;
+  function frame(){
+    var y=scrollY,
+        max=document.documentElement.scrollHeight-innerHeight;
+    if(prog) prog.style.setProperty('--p', max>0 ? (y/max).toFixed(4) : 0);
+    if(hero && y<innerHeight) hero.style.setProperty('--sy', (y*.35)+'px');
+    rails.forEach(function(r){
+      var s=r.closest('section')||r.parentElement, b=s.getBoundingClientRect(),
+          f=(innerHeight-b.top)/(innerHeight+b.height);
+      r.style.setProperty('--f', Math.max(0,Math.min(1,f)).toFixed(3));
+    });
+    tick=false;
+  }
+  /* --- sayfanin %50'sinde "cevrimiciyiz" bildirimi --- */
+  var av=document.getElementById('avail'), avX=document.getElementById('availX'),
+      avDone=false;
+  try{ if(sessionStorage.getItem('avHid')==='1') avDone=true; }catch(e){}
+  if(avX) avX.addEventListener('click',function(){
+    av.classList.remove('show'); avDone=true;
+    try{ sessionStorage.setItem('avHid','1'); }catch(e){}
+  });
+  function checkAvail(){
+    if(avDone||!av) return;
+    var max=document.documentElement.scrollHeight-innerHeight;
+    if(max>0 && scrollY/max >= .5){ av.classList.add('show'); avDone=true; }
+  }
+
+  if(!reduce){
+    addEventListener('scroll',function(){
+      if(!tick){tick=true;requestAnimationFrame(function(){frame();checkAvail();});}
+    },{passive:true});
+    frame();
+  } else {
+    addEventListener('scroll',checkAvail,{passive:true});
+  }
 })();
 </script>
 </body>
