@@ -297,26 +297,23 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
    aralığı sıkışarak yerine oturuyor, altına voltaj yayı çiziliyor. */
 .hero h1 .ln{display:block;overflow:hidden;padding:.06em 0}
 .hero h1 .ln > span{
-  display:inline-block;transform:translateY(112%) rotate(2.5deg);opacity:0;
-  animation:lineUp .95s cubic-bezier(.16,.9,.24,1) forwards;
+  display:inline-block;
+  animation:lineUp .95s cubic-bezier(.16,.9,.24,1) backwards;
 }
 .hero h1 .ln1 > span{animation-delay:.15s}
 .hero h1 .ln2 > span{animation-delay:.34s}
 @keyframes lineUp{
   0%{transform:translateY(112%) rotate(2.5deg);opacity:0}
-  100%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:none;opacity:1}
 }
 .hero h1 .v{
-  background:linear-gradient(100deg,var(--volt) 0%,var(--volt2) 42%,var(--volt) 78%);
-  background-size:220% 100%;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  letter-spacing:.06em;
-  animation:lineUp .95s .34s cubic-bezier(.16,.9,.24,1) forwards,
-            tighten 1s .34s cubic-bezier(.2,.8,.2,1) forwards,
-            sweep 5.5s 1.5s linear infinite;
+  color:var(--volt);
+  letter-spacing:-.02em;
+  text-shadow:0 0 26px rgba(220,180,71,.30);
+  animation:lineUp .95s .34s cubic-bezier(.16,.9,.24,1) backwards,
+            tighten 1s .34s cubic-bezier(.2,.8,.2,1) backwards;
 }
 @keyframes tighten{0%{letter-spacing:.10em}100%{letter-spacing:-.02em}}
-@keyframes sweep{0%{background-position:210% 0}100%{background-position:-110% 0}}
 
 /* voltaj yayı: başlığın altında çizilen kırık çizgi */
 .arc{display:block;width:min(420px,86%);height:22px;margin:2px 0 22px;overflow:visible}
@@ -324,7 +321,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   fill:none;stroke:var(--volt);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:460;stroke-dashoffset:460;
   filter:drop-shadow(0 0 6px var(--glow));
-  animation:drawArc 1.5s 1s cubic-bezier(.3,.8,.3,1) forwards;
+  animation:drawArc 1.5s 1s cubic-bezier(.3,.8,.3,1) both;
 }
 @keyframes drawArc{to{stroke-dashoffset:0}}
 
@@ -337,9 +334,9 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
   display:block;height:100%;width:100%;border-radius:99px;transform-origin:0 50%;
   background:linear-gradient(90deg,var(--volt-dim),var(--volt),var(--volt2));
   box-shadow:0 0 14px var(--glow);
-  transform:scaleX(0);animation:fill 1.8s 1.15s cubic-bezier(.25,.9,.3,1) forwards;
+  animation:fill 1.8s 1.15s cubic-bezier(.25,.9,.3,1) backwards;
 }
-@keyframes fill{to{transform:scaleX(1)}}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 /* açılışta tek seferlik ışık dalgası */
 .hero .flash{
@@ -694,7 +691,6 @@ section{padding:82px 0}
 }
 
 /* hero: yüzen kıvılcımlar + paralaks ızgara */
-.hero::after{transform:translateY(calc(var(--sy,0px) * .18))}
 .sparks{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .spark{position:absolute;color:var(--volt);opacity:.14;filter:drop-shadow(0 0 10px var(--glow))}
 .spark svg{width:100%;height:100%;display:block}
@@ -1085,14 +1081,12 @@ document.getElementById('yil').textContent=new Date().getFullYear();
 
   /* --- kaydirma ilerlemesi + hero paralaksi + sarj raylari --- */
   var prog=document.getElementById('prog'),
-      hero=document.querySelector('.hero'),
       rails=document.querySelectorAll('.rail'),
       tick=false;
   function frame(){
     var y=scrollY,
         max=document.documentElement.scrollHeight-innerHeight;
     if(prog) prog.style.setProperty('--p', max>0 ? (y/max).toFixed(4) : 0);
-    if(hero && y<innerHeight) hero.style.setProperty('--sy', (y*.35)+'px');
     rails.forEach(function(r){
       var s=r.closest('section')||r.parentElement, b=s.getBoundingClientRect(),
           f=(innerHeight-b.top)/(innerHeight+b.height);
