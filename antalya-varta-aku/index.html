@@ -237,10 +237,42 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.025em;font-weight:800;overflow-wra
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 /* ---------- hero ---------- */
-.hero{position:relative;padding:88px 0 76px;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero{
+  position:relative;padding:88px 0 76px;overflow:hidden;
+  border-bottom:1px solid var(--line);
+  /* Fotoğraf 739x415 — geniş ekranda büyütüldüğü için üzerine güçlü bir
+     lacivert perde konuyor: hem metin kontrastı garanti altına alınıyor
+     hem de düşük çözünürlük göze batmıyor. Metin solda olduğu için
+     perde soldan sağa açılıyor. */
+  background-image:
+    linear-gradient(100deg,
+      rgba(7,22,45,.965) 0%,
+      rgba(7,22,45,.935) 42%,
+      rgba(7,22,45,.86) 72%,
+      rgba(7,22,45,.80) 100%),
+    url("/images/akucu.jpeg");
+  background-size:auto, cover;
+  background-position:center, center 42%;
+  background-repeat:no-repeat, no-repeat;
+  background-color:var(--bg);
+}
 .hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 62% 55% at 18% 0%,rgba(220,180,71,.13),transparent 65%);
+  background:
+    radial-gradient(ellipse 62% 55% at 18% 0%,rgba(220,180,71,.15),transparent 65%),
+    linear-gradient(180deg,transparent 55%,rgba(7,22,45,.85) 100%);
+}
+@media(max-width:720px){
+  /* dar ekranda fotoğraf çok kırpıldığı için perde biraz daha koyu */
+  .hero{
+    background-image:
+      linear-gradient(175deg,
+        rgba(7,22,45,.94) 0%,
+        rgba(7,22,45,.955) 50%,
+        rgba(7,22,45,.98) 100%),
+      url("/images/akucu.jpeg");
+    background-position:center, center;
+  }
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
